@@ -3,7 +3,8 @@ let ting = new Audio("ting.mp3");
 let music = new Audio("music.mp3");
 let gameOverMusic = new Audio("gameover.mp3");
 let reset = document.getElementById("reset");
-
+let box = document.getElementsByClassName("box");
+let gameOver  =  false ; 
 
 
 
@@ -24,22 +25,48 @@ let winCombos = [
 const changeTurn = ()=>{
     return turn === 'X'? 'O' : 'X' ;
 }
+//gameWon function decides what to do after a player wins
+const gameWon = (e)=>{
+    document.getElementById("info").innerText = e +"  WON!!";
+    
+    gameOver = true;
+}
 //function to check Win
 const checkWin = ()=>{
-
-}
-//game logic
-
-let boxes = document.getElementsByClassName("box");
-Array.from(boxes).forEach(element =>{
-    let boxtext = element.querySelector('.boxtext');
-    element.addEventListener('click', ()=>{
-        if(boxtext.innerText === ''){
-            boxtext.innerText = turn;
-            turn = changeTurn();
-            ting.play();
-            checkWin();
-            document.getElementById("info").innerText  = "Turn for " + turn;
-        }
+    let boxText = document.getElementsByClassName("boxtext");
+    winCombos.forEach (e =>{
+        if (boxText[e[0]].innerText === boxText[e[1]].innerText && boxText[e[1]].innerText === 
+            boxText[e[2]].innerText && boxText[e[0]].innerText !=="")
+            {
+                gameWon(boxText[e[0]].innerText);
+            }
     })
-})
+}
+
+//game logic
+const gameLogic = ()=>{
+    Array.from(box).forEach(element =>{
+        let boxText = element.querySelector('.boxtext');
+        element.addEventListener('click', ()=>{
+            
+                if(!gameOver){
+                    if(boxText.innerText === ''){
+                        boxText.innerText = turn;
+                        turn = changeTurn();
+                        ting.play();
+                        checkWin();
+                        if (!gameOver)(document.getElementById("info").innerText  = "Turn for " + turn);
+                } 
+            }
+        })
+    })
+}
+
+
+//starting the game
+startGame();
+function startGame(){
+    if (!gameOver){
+        gameLogic();
+    }
+}
