@@ -25,6 +25,8 @@ let winCombos = [
 const changeTurn = ()=>{
     return turn === 'X'? 'O' : 'X' ;
 }
+
+
 //gameWon function decides what to do after a player wins
 const gameWon = (e)=>{
     document.getElementById("info").innerText = e +"  WON!!";
@@ -33,6 +35,8 @@ const gameWon = (e)=>{
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "300px";
     gameOver = true;
 }
+
+
 //function to check Win
 const checkWin = ()=>{
     let boxText = document.getElementsByClassName("boxtext");
@@ -41,9 +45,13 @@ const checkWin = ()=>{
             boxText[e[2]].innerText && boxText[e[0]].innerText !=="")
             {
                 gameWon(boxText[e[0]].innerText);
+                box[e[0]].style.background= "purple";
+                box[e[1]].style.background= "purple";
+                box[e[2]].style.background= "purple";
             }
     })
 }
+
 
 //game logic
 const gameLogic = ()=>{
@@ -65,6 +73,7 @@ const gameLogic = ()=>{
 }
 
 
+
 //starting the game
 startGame();
 function startGame(){
@@ -72,6 +81,8 @@ function startGame(){
         gameLogic();
     }
 }
+
+
 
 //function of 'Reset' button
 reset.addEventListener('click' , ()=>{
@@ -84,5 +95,9 @@ reset.addEventListener('click' , ()=>{
         document.getElementById("info").style.color = "black";
         gameOver = false;
         music.pause();
+        music.currentTime = 0;
+        })
+        Array.from(box).forEach(e=>{
+            e.style.background= "#fff";
         })
 })
