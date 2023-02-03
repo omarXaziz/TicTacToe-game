@@ -17,6 +17,7 @@ nav ul{
 }
 .container{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
 }
@@ -43,7 +44,7 @@ nav ul{
     align-items: center;
     flex-direction: column;
     margin-left: 70px;
-    font-size: 1vw;
+    font-size: 1rem;
 }
 .imgbox img {
     width: 0;
@@ -67,7 +68,24 @@ nav ul{
     border: 2px solid purple;
     cursor: pointer;
 }
+
+@media screen and (max-width :600px){
+    .container{
+        width:90%;
+    }
+    .board{
+        grid-template-rows: repeat(3 , 20vw);
+        grid-template-columns: repeat(3, 20vw);
+    }
+    .gameInfo{
+        margin-top: 30px;
+        font-size: 1rem;
+    }
+    .gameInfo h1{
+        font-size: 2rem;
+    }
+}
 #info{
-    font-size: 30px;
+    font-size: 2rem;
     margin-top: 10px;
 }
