@@ -4,7 +4,7 @@ let music = new Audio("music.mp3");
 let gameOverMusic = new Audio("gameover.mp3");
 let reset = document.getElementById("reset");
 let box = document.getElementsByClassName("box");
-let gameOver  =  false ; 
+let gameOver = false ; 
 
 
 
@@ -28,7 +28,9 @@ const changeTurn = ()=>{
 //gameWon function decides what to do after a player wins
 const gameWon = (e)=>{
     document.getElementById("info").innerText = e +"  WON!!";
-    
+    document.getElementById("info").style.color = "purple";
+    music.play();
+    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "300px";
     gameOver = true;
 }
 //function to check Win
@@ -70,3 +72,17 @@ function startGame(){
         gameLogic();
     }
 }
+
+//function of 'Reset' button
+reset.addEventListener('click' , ()=>{
+    Array.from(box).forEach(element =>{
+        let boxText = element.querySelector('.boxtext');
+        boxText.innerText = '';
+        turn = changeTurn();
+        document.getElementById("info").innerText = "Turn for X";
+        document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px";
+        document.getElementById("info").style.color = "black";
+        gameOver = false;
+        music.pause();
+        })
+})

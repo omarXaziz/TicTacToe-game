@@ -35,6 +35,7 @@ nav ul{
 }
 .box:hover{
     background-color: rgb(228, 212, 241);
+    cursor: pointer;
 }
 .gameInfo{
     display: flex;
@@ -44,8 +45,8 @@ nav ul{
     margin-left: 70px;
     font-size: 1vw;
 }
-.img img{
-    display: none;
+.imgbox img {
+    width: 0;
 }
 .br-0{
     border-right: 0;
@@ -60,7 +61,13 @@ nav ul{
     border-bottom: 0;
 }
 #reset{
-    padding: 5px;
+    padding: 8px;
+    margin-left: 10px;
     background-color: rgb(228, 212, 241);
-    border: 1px solid purple;
+    border: 2px solid purple;
+    cursor: pointer;
+}
+#info{
+    font-size: 30px;
+    margin-top: 10px;
 }
